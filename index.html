@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="tl">
-<head>
-<meta charset="utf-8">
-<meta name="theme-color" content="#000000">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<title>ZOMBIE WORLD</title>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Zombie World</title>
 <style>
 :root{--bg:#0c0f12;--panel:#151a20;--text:#e8ecef;--hp:#e5484d;--accent:#f5c518;color-scheme:dark}
 @media (prefers-color-scheme:light){:root{--bg:#0c0f12}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:none;user-select:none}
 html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:Impact,"Arial Narrow",system-ui,sans-serif;overflow:hidden}
-body{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 #wrap{position:relative;height:100%;max-width:520px;margin:0 auto}
 canvas{display:block;width:100%;height:100%;background:#1b2026}
 #hud{position:absolute;top:0;left:0;right:0;display:flex;gap:14px;align-items:center;padding:10px 12px;background:rgba(10,13,16,.85);font-size:17px;letter-spacing:.5px}
@@ -400,6 +394,71 @@ button:active:not(:disabled){transform:scale(.96)}
 .row2{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
 .row2>.rb{margin:0}
 .ch{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;padding:4px 8px;border-radius:8px;border:1px solid;margin:6px 6px 0 0}
+/* ===== RACING DRAW (LIMITED EVENT) ===== */
+#home #nrb{position:absolute;top:calc(env(safe-area-inset-top,0px) + 112px);right:12px;display:flex!important;align-items:center;gap:8px;padding:6px 12px 6px 8px!important;background:rgba(4,26,40,.92)!important;border:1px solid #38e8ff!important;border-radius:14px!important;color:#aef6ff!important;font-size:11px!important;letter-spacing:1.5px;text-align:left;animation:nrg 2.2s ease-in-out infinite}
+#nrb svg{width:28px;height:28px;flex:none}
+#nrb small{display:block;font-size:9px;color:#7fe8ff;letter-spacing:1px;margin-top:2px;font-variant-numeric:tabular-nums}
+#home #nrb.end{animation:none;border-color:#35505c!important;color:#6f8b97!important}
+@keyframes nrg{0%,100%{box-shadow:0 0 8px #38e8ff55}50%{box-shadow:0 0 22px #38e8ffcc}}
+#nrd{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 16px) 16px 28px;overflow:auto;text-align:center;background:repeating-linear-gradient(105deg,transparent 0 26px,rgba(56,232,255,.05) 26px 28px),radial-gradient(circle at 50% 22%,#08334a 0,#04121c 48%,#000 88%)}
+#nrd,#nrd *{touch-action:pan-y}
+#nrd>*{flex:none;width:100%;max-width:380px}
+#nrd button{font-family:inherit;background:var(--surf);color:#fff;border:1px solid var(--line);border-radius:12px;font-size:14px;font-weight:700;letter-spacing:1.5px;padding:12px 16px}
+#nrd .hd button{width:auto;padding:10px 14px;font-size:13px}
+#nrd.fl{animation:nrfl .9s ease-out}
+@keyframes nrfl{0%{box-shadow:inset 0 0 160px 60px rgba(127,232,255,.85)}100%{box-shadow:inset 0 0 0 0 rgba(127,232,255,0)}}
+.nrchk{height:12px;border-radius:2px;background:repeating-conic-gradient(#e8fbff 0 25%,#04121c 0 50%) 0 0/12px 12px;animation:nrsl 1.2s linear infinite;opacity:.9}
+@keyframes nrsl{to{background-position:24px 0}}
+.nrtt{font-size:32px;font-weight:900;font-style:italic;letter-spacing:4px;line-height:1;text-transform:uppercase;color:#fff;transform:skewX(-8deg);text-shadow:0 0 18px #38e8ff,0 3px 0 #04121c}
+.nrtt em{font-style:inherit;color:#7fe8ff}
+.nrlt{font-size:11px;letter-spacing:2px;color:#7fe8ff;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.nrlt b{color:#fff;letter-spacing:1px}
+#nrStage{display:flex;align-items:flex-end;justify-content:center}
+#nrStage canvas{width:31%;aspect-ratio:120/150;height:auto;flex:none}
+#nrfw{position:relative;width:38%;display:flex;justify-content:center;align-items:flex-end;padding-bottom:8px}
+#nrEm{width:100%;max-width:132px;height:auto;filter:drop-shadow(0 0 14px #38e8ff);overflow:visible}
+#nrEm.shake{animation:nshk .15s 6}
+#nrEm.pop{animation:npop .5s}
+@keyframes nshk{0%,100%{transform:rotate(0)}25%{transform:rotate(-9deg)}75%{transform:rotate(9deg)}}
+@keyframes npop{0%{transform:scale(1)}40%{transform:scale(1.3);filter:drop-shadow(0 0 30px #fff)}100%{transform:scale(1)}}
+.nsp{position:absolute;bottom:30px;width:3px;height:16px;border-radius:2px;background:#bff3ff;opacity:0;animation:fbr 1s ease-out forwards}
+#nrd .nrbt{display:flex;gap:10px}
+#nrd .nrbt button{flex:1;background:linear-gradient(135deg,#7fe8ff,#2aa8ff);color:#03121a;border:0;font-size:15px;font-weight:800;box-shadow:0 0 18px #38e8ff55}
+#nrd .nrbt button:disabled{opacity:.5;box-shadow:none}
+#nrd .nrbt small{display:block;font-size:10px;color:#04364a;font-weight:700;letter-spacing:.5px;margin-top:2px}
+#nrd .nrbt small .tk{vertical-align:-.2em}
+#nrMsg{min-height:18px;color:#ff9a9a;font-size:13px;font-weight:500}
+#nrRare{min-height:24px;font-size:18px;letter-spacing:3px;color:#fff;text-shadow:0 0 12px #38e8ff}
+#nrRes{display:flex;flex-direction:column;gap:6px;align-items:center}
+#nrRes .dc{border-color:#1c5870;background:rgba(4,26,40,.8)}
+#nrRes .dc.rare{border-color:#7fe8ff;animation:flip .5s both,nglw 1s .5s 3}
+@keyframes nglw{50%{box-shadow:0 0 22px #38e8ff}}
+#nrRes .dc b{color:#fff}
+#nrGal{display:flex;flex-direction:column;gap:10px;text-align:left}
+#nrGal .gt{text-align:center;margin-top:6px}
+.nrg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nri{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 8px;border:1px solid #1c5870;background:rgba(4,26,40,.7);border-radius:14px;text-align:center;min-width:0;font-family:system-ui,sans-serif}
+.nri.rare{border-color:#7fe8ff}
+.nri canvas{width:100%;max-width:120px;aspect-ratio:60/36;height:auto;background:#000;border:1px solid #1c5870;border-radius:8px}
+.nri b{font-size:12px;letter-spacing:.8px;color:#fff;font-weight:700}
+.nri small{font-size:10px;color:#8fb6c6;font-weight:500;line-height:1.4}
+.nri i{font-style:normal;font-size:11px;color:#7fe8ff;font-weight:800;letter-spacing:1px}
+.nri .rb{margin:0}
+.nri.wide{grid-column:1/-1;flex-direction:row;text-align:left;gap:12px;align-items:center}
+.nri.wide>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.nrnote{font-family:system-ui,sans-serif;font-size:11px;line-height:1.6;color:#8fb6c6;font-weight:500;text-align:left}
+.nrnote b{color:#fff}
+.rb.r-x,.ch.r-x{color:#d9fbff;border-color:#aef6ff;background:linear-gradient(90deg,rgba(56,232,255,.35),rgba(127,232,255,.12));text-shadow:0 0 6px #38e8ff;box-shadow:0 0 10px #38e8ff99;animation:nrx 1.6s ease-in-out infinite}
+@keyframes nrx{50%{box-shadow:0 0 18px #7fe8ff}}
+.nri.xcl{border-color:#aef6ff;box-shadow:0 0 16px #38e8ff66}
+#nrRes .dc.xcl{border-color:#aef6ff;animation:flip .5s both,nglw 1s .5s 5}
+#hud #bdgc{width:30px!important;height:30px!important;min-width:30px;flex:none;background:none}
+#pause,#gset{flex:none}
+#hud span{flex:0 1 auto;min-width:0}
+#hud .sp{flex:1 1 0;min-width:0}
+@media (max-width:440px){#hud{gap:5px;padding:8px 8px;font-size:12px;letter-spacing:.2px}#hud #bdgc{width:24px!important;height:24px!important;min-width:24px}#pause,#gset{width:30px;height:28px}}
+@media (max-width:370px){#hud{gap:4px;padding:8px 6px;font-size:11px}#hud #bdgc{width:20px!important;height:20px!important;min-width:20px}#pause,#gset{width:26px}}
+/* ===== END RACING DRAW ===== */
 </style>
 </head>
 <body>
@@ -418,12 +477,20 @@ button:active:not(:disabled){transform:scale(.96)}
 <div id="warn">⚠ BOSS INCOMING ⚠</div>
 <div id="stick"><div id="knob"></div></div>
 <button id="fire" aria-label="Fire"><svg viewBox="0 0 64 44" width="52" height="36"><g id="gn"><path d="M8 10h38v10H34l-3 4v10H18V20H8z" fill="#e8ecef"/><rect x="8" y="10" width="38" height="4" fill="#b5bdc5"/><rect x="22" y="24" width="8" height="10" fill="#2b2f36"/></g><polygon id="mf" points="46,15 63,5 56,15 63,25" fill="#ffd34d"/></svg></button>
-<div id="home"><button id="setb" aria-label="Settings"></button><button id="drawb"><svg viewBox="0 0 64 64" width="44" height="44"><path d="M24 6h16v4h-3v14l14 26q3 8-6 8H19q-9 0-6-8l14-26V10h-3z" fill="#0a2a2e" stroke="#7fefff" stroke-width="3" stroke-linejoin="round"/><path d="M20 40h24l8 14q2 4-3 4H15q-5 0-3-4z" fill="#8dff2e"/><circle cx="26" cy="48" r="3" fill="#d6ff9a"/><circle cx="36" cy="44" r="2.5" fill="#d6ff9a"/><circle cx="40" cy="52" r="2" fill="#d6ff9a"/></svg><span>EXOTICS LAB</span><small>DRAW EVENT</small></button><button id="rpb"><span>RIFT PORTAL<small id="rps">PRISM TITAN</small></span></button><h1>ZOMBIE<br>SHOOTER</h1><div id="bk"></div><div id="lim"></div><div class="chips"><button class="chip" data-a="zone">ZOMBIE AREA</button><button class="chip" data-a="house">HOUSE AREA</button></div><p id="eq"></p><button id="st">START THE BATTLE</button><div class="row"><button id="custb">CUSTOMIZE</button><button id="exchb">EXCHANGE</button></div><div class="row"><button id="shopb">SHOP</button><button id="evb">EVENT</button></div><button id="claimb"></button><button id="rot"></button></div>
+<div id="home"><button id="setb" aria-label="Settings"></button><button id="drawb"><svg viewBox="0 0 64 64" width="44" height="44"><path d="M24 6h16v4h-3v14l14 26q3 8-6 8H19q-9 0-6-8l14-26V10h-3z" fill="#0a2a2e" stroke="#7fefff" stroke-width="3" stroke-linejoin="round"/><path d="M20 40h24l8 14q2 4-3 4H15q-5 0-3-4z" fill="#8dff2e"/><circle cx="26" cy="48" r="3" fill="#d6ff9a"/><circle cx="36" cy="44" r="2.5" fill="#d6ff9a"/><circle cx="40" cy="52" r="2" fill="#d6ff9a"/></svg><span>EXOTICS LAB</span><small>DRAW EVENT</small></button><button id="rpb"><span>RIFT PORTAL<small id="rps">PRISM TITAN</small></span></button><button id="nrb"><svg viewBox="0 0 32 32"><polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="#06202e" stroke="#7fe8ff" stroke-width="1.6"/><path d="M18 7L9 18h6l-2 7 9-12h-6z" fill="#fff"/></svg><span>RACING DRAW<small id="nrbs"></small></span></button><h1>ZOMBIE<br>SHOOTER</h1><div id="bk"></div><div id="lim"></div><div class="chips"><button class="chip" data-a="zone">ZOMBIE AREA</button><button class="chip" data-a="house">HOUSE AREA</button></div><p id="eq"></p><button id="st">START THE BATTLE</button><div class="row"><button id="custb">CUSTOMIZE</button><button id="exchb">EXCHANGE</button></div><div class="row"><button id="shopb">SHOP</button><button id="evb">EVENT</button></div><button id="claimb"></button><button id="rot"></button></div>
 <div id="shop"><div class="hd"><button id="sb">◀ LOBBY</button><b id="sbk"></b></div><div class="tabs"><button id="ta">AVATAR</button><button id="tg">GUN</button><button id="tt">TRAIL</button><button id="tp">POWER</button></div><div id="list"></div></div>
 <div id="drw"><div class="hd"><button id="db">◀ LOBBY</button><b id="dbk"></b></div>
 <div id="fw"><svg id="fl" viewBox="0 0 64 64" width="120" height="120"><path d="M24 6h16v4h-3v14l14 26q3 8-6 8H19q-9 0-6-8l14-26V10h-3z" fill="#0a2a2e" stroke="#7fefff" stroke-width="3" stroke-linejoin="round"/><path d="M20 40h24l8 14q2 4-3 4H15q-5 0-3-4z" fill="#8dff2e"/><circle class="bb" cx="26" cy="48" r="3" fill="#d6ff9a"/><circle class="bb" cx="36" cy="44" r="2.5" fill="#d6ff9a" style="animation-delay:.6s"/><circle class="bb" cx="40" cy="52" r="2" fill="#d6ff9a" style="animation-delay:1.1s"/></svg></div>
 <div class="dbtn"><button id="d1">X1 DRAW<small>1,000 TICKET GOLD</small></button><button id="d10">X10 DRAW<small>5,000 TICKET GOLD</small></button></div><div id="dmsg"></div><div id="drare"></div><div id="dres"></div>
 <div id="dgal"></div></div>
+<div id="nrd"><div class="hd"><button id="nrBack">◀ LOBBY</button><b id="nrBk"></b></div>
+<div class="nrchk"></div>
+<div class="nrtt"><em>RACING</em> DRAW</div>
+<div class="nrlt"><svg viewBox="0 0 24 24" width="13" height="13"><path d="M13 2L5 14h6l-1 8 9-13h-6z" fill="#7fe8ff"/></svg><span>LIMITED TIME EVENT</span><b id="nrCd"></b></div>
+<div id="nrStage"><canvas id="nrA0" width="240" height="300"></canvas><div id="nrfw"><svg id="nrEm" viewBox="0 0 120 130"><defs><linearGradient id="nrgb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaffff"/><stop offset="1" stop-color="#2aa8ff"/></linearGradient><pattern id="nrck" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#04121c"/><rect width="6" height="6" fill="#e8fbff"/><rect x="6" y="6" width="6" height="6" fill="#e8fbff"/></pattern></defs><ellipse cx="60" cy="122" rx="36" ry="6" fill="#38e8ff" opacity=".28"/><rect x="38" y="20" width="44" height="98" rx="12" fill="#06202e" stroke="#7fe8ff" stroke-width="3"/><rect x="49" y="6" width="22" height="16" rx="3" fill="#cfd6dc" stroke="#7fe8ff" stroke-width="2"/><rect x="57" y="1" width="6" height="7" fill="#7fe8ff"/><rect x="40" y="34" width="40" height="8" fill="url(#nrck)"/><path d="M63 50L48 80H59L54 108L76 72H65L71 50Z" fill="url(#nrgb)"/></svg></div><canvas id="nrA1" width="240" height="300"></canvas></div>
+<div class="nrbt"><button id="nrx1"></button><button id="nrx10"></button></div>
+<div id="nrMsg"></div><div id="nrRare"></div><div id="nrRes"></div>
+<div id="nrGal"></div></div>
 <div id="cust"><div class="hd"><button id="cuBack">◀ LOBBY</button><b id="cuSc"></b></div>
 <div id="cuStage"><canvas id="cuPv" width="720" height="560"></canvas>
 <svg id="cuLn" viewBox="0 0 360 280"><g id="cuL_av"><polyline points="62,60 62,96 128,132"/><circle cx="128" cy="132" r="3.5"/></g><g id="cuL_gun"><polyline points="298,60 298,96 212,146"/><circle cx="212" cy="146" r="3.5"/></g><g id="cuL_tr"><polyline points="62,221 62,170"/><circle cx="62" cy="170" r="3.5"/></g><g id="cuL_pw"><polyline points="298,221 298,192 178,172"/><circle cx="178" cy="172" r="3.5"/></g></svg>
@@ -441,7 +508,7 @@ button:active:not(:disabled){transform:scale(.96)}
 <div class="qk"><button data-v="10000">10K</button><button data-v="50000">50K</button><button data-v="100000">100K</button><button data-v="max">MAX</button></div></div>
 <div class="res"><small>YOU GET</small><div id="exOut"></div><span id="exNote"></span></div>
 <button id="exGo">EXCHANGE</button><div id="exMsg"></div>
-<div class="rg"><div class="gt">RARITY GUIDE</div>
+<div class="rg"><div class="gt">RARITY GUIDE</div><div class="row2"><em class="rb r-x">EXCLUSIVE</em><div><span class="ch r-x">RACING BADGE</span></div></div>
 <div class="row2"><em class="rb r-m">MYTHIC</em><div><span class="ch r-m">ANGELIC</span><span class="ch r-m">DEMONIC</span><span class="ch r-m">EXOTICS</span><span class="ch r-m">DR. PLASMA</span></div></div>
 <div class="row2"><em class="rb r-l">LEGENDARY</em><div><span class="ch r-l">SNOW</span><span class="ch r-l">VOLCANO</span></div></div>
 <div class="row2"><em class="rb r-e">EPIC</em><div><span class="ch r-e">ALL DEFAULT ITEMS</span></div></div></div></div>
@@ -1226,7 +1293,7 @@ addEventListener('keydown',e=>{if(e.key==='f')doPower()});
 $('tp').onclick=()=>{SV.tab='pw';renderShop()};
 function renderShop(){const tb=SV.tab||'av',dl=daysLeft();$('sbk').textContent='SCORE: '+SV.bank.toLocaleString();
  [['ta','av'],['tg','gun'],['tt','tr'],['tp','pw']].forEach(([i,t])=>$(i).classList.toggle('on',tb===t));
- if(tb==='pw'){$('list').innerHTML=byR('pw',Object.keys(POW)).map(k=>{const o=POW[k],own=SV.own['pw_'+k],eq=SV.pw===k,lk=o.req&&!SV.own[o.req];return `<div class="card${eq?' eq':''}"><canvas width="60" height="36" data-p="${k}"></canvas><div><b>${o.n} X${o.x}${rb(rar('pw',k))}</b><small>${lk?'UNLOCK '+AV[o.req].n+' AVATAR FIRST':o.info}</small></div><button data-p="${k}" ${eq||lk?'disabled':''}>${eq?'EQUIPPED':lk?'LOCKED':own?'EQUIP':o.price.toLocaleString()+' SCORE'}</button></div>`}).join('');
+ if(tb==='pw'){$('list').innerHTML=byR('pw',Object.keys(POW).filter(k=>!(POW[k].gacha&&!SV.own['pw_'+k]))).map(k=>{const o=POW[k],own=SV.own['pw_'+k],eq=SV.pw===k,lk=o.req&&!SV.own[o.req];return `<div class="card${eq?' eq':''}"><canvas width="60" height="36" data-p="${k}"></canvas><div><b>${o.n} X${o.x}${rb(rar('pw',k))}</b><small>${lk?'UNLOCK '+(AV[o.req]||o).n+' AVATAR FIRST':o.info}</small></div><button data-p="${k}" ${eq||lk?'disabled':''}>${eq?'EQUIPPED':lk?'LOCKED':own?'EQUIP':o.price.toLocaleString()+' SCORE'}</button></div>`}).join('');
   $('list').querySelectorAll('canvas').forEach(cv=>pwIcon(cv.getContext('2d'),cv.dataset.p));return}
  const L=tb==='av'?AV:tb==='tr'?TR:GUN,cur=tb==='av'?SV.av:tb==='tr'?SV.trail:SV.gun;
  $('list').innerHTML=byR(tb,Object.keys(L).filter(k=>k!=='mg'&&!(L[k].gacha&&!SV.own[k]))).map(k=>{const o=L[k],own=SV.own[k]||(o.price===0&&!o.lim),eq=cur===k,ended=o.lim&&!own&&dl<=0,info=o.info+(o.lim&&!ended?' · '+dl+' DAYS LEFT':'');return `<div class="card${eq?' eq':''}"><canvas width="60" height="36" data-c="${k}"></canvas><div><b>${o.n}${rb(rar(tb,k))}</b><small>${info}</small></div><button data-k="${k}" ${eq||ended?'disabled':''}>${eq?'EQUIPPED':own?'EQUIP':ended?'ENDED':o.lim?'CLAIM FREE':o.price.toLocaleString()+' SCORE'}</button></div>`}).join('');
@@ -1250,9 +1317,9 @@ const owned=(s,k)=>{if(k==='')return true;if(s==='pw')return !!SV.own['pw_'+k];c
 const lock=(s,k)=>s==='pw'&&k!==''&&POW[k].req&&!SV.own[POW[k].req];
 function state(s,k){const o=k===''?null:DB[s][k];
  if(cur(s)===k)return{t:'EQUIPPED',d:1,tag:'EQUIPPED'};
- if(lock(s,k))return{t:'LOCKED · UNLOCK '+AV[o.req].n+' FIRST',d:1,tag:'LOCKED'};
+ if(lock(s,k))return{t:'LOCKED · UNLOCK '+(AV[o.req]||o).n+' FIRST',d:1,tag:'LOCKED'};
  if(owned(s,k))return{t:'EQUIP',d:0,tag:'OWNED'};
- if(o.gacha)return{t:'LOCKED · EXOTICS LAB',d:1,tag:'LOCKED'};
+ if(o.gacha)return{t:'LOCKED · '+(o.ev||o.evl?'RACING DRAW':'EXOTICS LAB'),d:1,tag:'LOCKED'};
  if(o.lim){const e=daysLeft()<=0;return{t:e?'ENDED':'CLAIM FREE',d:e,tag:e?'ENDED':'FREE'}}
  return{t:'BUY · '+o.price.toLocaleString()+' SCORE',d:0,tag:o.price.toLocaleString()}}
 function icon(cv,s,k){const g=cv.getContext('2d');if(k===''){g.fillStyle='#777';g.font='bold 11px system-ui';g.textAlign='center';g.fillText('NONE',30,22);return}
@@ -1545,8 +1612,180 @@ function rcLoop(now){if(!RC.on)return;requestAnimationFrame(rcLoop);if(now-RC.l<
  if(pull&&el>=2.7){RC.mode=0;rcReveal()}}
 $('rcb').onclick=()=>{RC.on=0;rcw.style.display='none';renderDraw()};$('rc1').onclick=()=>doRC(1);$('rc10').onclick=()=>doRC(10);$('rcv').onpointerdown=()=>{if(RC.mode===1&&RC.t0)RC.t0=Math.min(RC.t0,performance.now()-2700)};
 $('rcod').onclick=()=>{const g=$('rcgal'),o=g.style.display==='flex';g.style.display=o?'none':'flex';if(!o)rcGal()};
-const rcgo=document.createElement('button');rcgo.id='rcgo';rcgo.innerHTML='🏁 RACING DRAW EVENT<small style="font-size:11px;font-weight:400">NEW · BOSS ITEMS · ⚡ ELECTRIC</small>';rcgo.style.cssText='width:100%;max-width:420px;background:linear-gradient(135deg,#c07bff,#00e5ff)!important;color:#071018!important;font-weight:800;border:0!important';$('drw').insertBefore(rcgo,$('drw').children[1]);rcgo.onclick=rcOpen;bdgRender();
+const rcgo=document.createElement('button');rcgo.id='rcgo';rcgo.innerHTML='🏁 RACING DRAW EVENT<small style="font-size:11px;font-weight:400">NEW · BOSS ITEMS · ⚡ ELECTRIC</small>';rcgo.style.cssText='width:100%;max-width:420px;background:linear-gradient(135deg,#c07bff,#00e5ff)!important;color:#071018!important;font-weight:800;border:0!important';bdgRender();
+
+/* ===== RACING DRAW (LIMITED EVENT): NITRO KING + PHANTOM APEX ===== */
+(function(){
+if(!SV.nrEnd){SV.nrEnd=Date.now()+7*864e5;sv()}
+const fmt=n=>(n||0).toLocaleString();
+const rbx=()=>'<em class="rb r-x">EXCLUSIVE</em>';
+/* ---------- items ---------- */
+AV.nitroking={n:'NITRO KING',price:0,gacha:1,ev:1,ek:0,evp:'evp0',hp:350,spd:1.25,info:'LIMITED RACING DRAW · lightning aura + nitro fins · x15 NITRO OVERDRIVE power · 350 HP',tor:'#0a2a3c',slv:'#08202e',hair:'#eaffff',helm:1,crown:1,cc:'#7fe8ff',skin:'#d3e4ee',gog:'#38e8ff',bag:'#0c3a52',bag2:'#7fe8ff',aura:'#38e8ff',orb:'hex',ap:'evsp0'};
+AV.phantomapex={n:'PHANTOM APEX',price:0,gacha:1,ev:1,ek:1,evp:'evp1',hp:350,spd:1.25,info:'LIMITED RACING DRAW · ghost afterimages + electric aura · x15 PHANTOM LAP power · 350 HP',tor:'#10173a',slv:'#0b1130',hair:'#d6e0ff',helm:1,crown:1,cc:'#a9c1ff',skin:'#c9d4f2',gog:'#bfe9ff',bag:'#15204f',bag2:'#9bb4ff',aura:'#8fb8ff',orb:'hex',ap:'evsp1'};
+TR.tevl={n:'ELECTRIC RACING TRAIL',price:0,gacha:1,evl:1,dmg:25,info:'LIMITED RACING DRAW · lightning bolts + checkered sparks · +25 damage'};
+TR.tevn={n:'ELECTRIC NITRO TRAIL',price:0,gacha:1,evl:1,dmg:30,info:'LIMITED RACING DRAW · nitro flames + electric rings · +30 damage'};
+POW.evp0={n:'NITRO OVERDRIVE',x:15,price:0,gacha:1,req:'nitroking',ic:'⚡',s:'NITRO',cols:['#38e8ff','#ffffff'],info:'Lightning strikes the 10 nearest zombies · 5s speed boost · electric kill FX'};
+POW.evp1={n:'PHANTOM LAP',x:15,price:0,gacha:1,req:'phantomapex',ic:'👻',s:'GHOST',cols:['#8fb8ff','#ffffff'],info:'5s ghost shield · lightning hits the 14 nearest and slows them · electric kill FX'};
+RAR.av.nitroking='m';RAR.av.phantomapex='m';RAR.tr.tevl='m';RAR.tr.tevn='m';RARPW.evp0='m';RARPW.evp1='m';
+
+/* ---------- electric drawing helpers ---------- */
+function evArc(c,r0,r1,col,w,n){const a=Math.random()*6.283,d=(Math.random()<.5?-1:1)*(.5+Math.random()*.6);let q=a,r=r0;c.save();c.lineJoin='round';c.beginPath();c.moveTo(Math.cos(q)*r,Math.sin(q)*r);for(let i=1;i<=n;i++){r=r0+(r1-r0)*i/n;q=a+d*i/n*1.6+(Math.random()-.5)*.35;c.lineTo(Math.cos(q)*r,Math.sin(q)*r)}c.globalAlpha=.3;c.strokeStyle=col;c.lineWidth=w*3.2;c.stroke();c.globalAlpha=1;c.lineWidth=w;c.strokeStyle='#fff';c.stroke();c.restore()}
+function evAuraLocal(c,A,t,k,full){const i=A.ek,rgb=i?'143,184,255':'56,232,255',hex=i?'#cfdcff':'#aef6ff';c.save();c.globalCompositeOperation='lighter';
+ const R=46*k,g=c.createRadialGradient(0,0,3*k,0,0,R);g.addColorStop(0,'rgba('+rgb+',.38)');g.addColorStop(.6,'rgba('+rgb+',.12)');g.addColorStop(1,'rgba('+rgb+',0)');c.fillStyle=g;c.beginPath();c.arc(0,0,R,0,7);c.fill();
+ if(full){c.strokeStyle='rgba('+rgb+',.8)';c.lineWidth=2;c.setLineDash([5,7]);c.beginPath();c.arc(0,0,34*k,t*1.5,t*1.5+6.28);c.stroke();c.setLineDash([])}
+ for(let n=0;n<4;n++){const a=t*2.4+n*1.571,x=Math.cos(a)*32*k,y=Math.sin(a)*20*k;c.strokeStyle=n%2?hex:'#fff';c.lineWidth=1.6;c.beginPath();c.moveTo(x-5*k,y-3*k);c.lineTo(x,y-k);c.lineTo(x-2*k,y+k);c.lineTo(x+4*k,y+4*k);c.stroke()}
+ for(let n=0;n<3;n++)evArc(c,12*k,44*k,'rgb('+rgb+')',1.2*k,5);
+ c.restore()}
+function evFins(c,A,t){const i=A.ek,fl=.7+.3*Math.sin(t*30);c.save();c.globalCompositeOperation='lighter';
+ const g=c.createRadialGradient(0,0,3,0,0,44);g.addColorStop(0,i?'rgba(160,190,255,.38)':'rgba(90,230,255,.38)');g.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=g;c.beginPath();c.arc(0,0,44,0,7);c.fill();
+ for(const s of[-1,1]){c.fillStyle=i?'rgba(160,190,255,.45)':'rgba(56,232,255,.5)';c.beginPath();c.moveTo(-6,s*7);c.lineTo(-30-5*fl,s*20);c.lineTo(-22,s*7);c.lineTo(-36-6*fl,s*10);c.lineTo(-14,s*3);c.closePath();c.fill()}
+ if(!i){c.fillStyle='rgba(56,232,255,.55)';c.beginPath();c.moveTo(-14,-5);c.lineTo(-34-16*fl,0);c.lineTo(-14,5);c.fill();c.fillStyle='rgba(255,255,255,.9)';c.beginPath();c.moveTo(-14,-2.5);c.lineTo(-26-10*fl,0);c.lineTo(-14,2.5);c.fill()}
+ else{for(let k=1;k<=2;k++){c.globalAlpha=.2/k;c.fillStyle='#cfdcff';c.beginPath();c.ellipse(-2-k*9,0,8,15,0,0,7);c.fill()}}
+ c.restore()}
+function evBadge(c,t,rnd){c.save();const fl=.6+.4*Math.sin(t*14);
+ if(rnd)for(let n=0;n<4;n++)evArc(c,36,58,'rgb(56,232,255)',1.6,5);
+ for(const s of[-1,1]){c.fillStyle='#38e8ff';c.beginPath();c.moveTo(s*34,-12);c.lineTo(s*58,-30);c.lineTo(s*50,-10);c.lineTo(s*60,0);c.lineTo(s*48,4);c.lineTo(s*56,14);c.lineTo(s*34,8);c.closePath();c.fill();c.fillStyle='#d9fbff';c.beginPath();c.moveTo(s*34,-8);c.lineTo(s*50,-20);c.lineTo(s*44,-6);c.lineTo(s*52,2);c.lineTo(s*34,4);c.closePath();c.fill()}
+ const hx=r=>{c.beginPath();for(let n=0;n<6;n++){const a=n*1.047-1.5708;c.lineTo(Math.cos(a)*r,Math.sin(a)*r)}c.closePath()};
+ hx(40);const g=c.createLinearGradient(0,-40,0,40);g.addColorStop(0,'#0a3a52');g.addColorStop(1,'#04121c');c.fillStyle=g;c.fill();c.strokeStyle='#aef6ff';c.lineWidth=4;c.stroke();hx(32);c.strokeStyle='#38e8ff';c.lineWidth=1.5;c.stroke();
+ c.save();c.rotate(t*1.2);c.setLineDash([4,6]);c.strokeStyle='rgba(191,243,255,.8)';c.lineWidth=1.5;c.beginPath();c.arc(0,0,36,0,7);c.stroke();c.restore();
+ c.save();c.translate(0,-2);
+ c.fillStyle='rgba(255,255,255,.28)';c.beginPath();c.moveTo(8,-30);c.lineTo(-14,2);c.lineTo(-2,2);c.lineTo(-8,28);c.lineTo(16,-6);c.lineTo(3,-6);c.closePath();c.fill();
+ c.fillStyle='#050a10';c.fillRect(-27,3,8,15);c.fillRect(19,3,8,15);c.fillStyle='#38e8ff';c.fillRect(-27,8,8,2);c.fillRect(19,8,8,2);
+ c.fillStyle='#e8fbff';c.beginPath();c.moveTo(-23,17);c.lineTo(-23,6);c.lineTo(-15,2);c.lineTo(-10,-9);c.lineTo(10,-9);c.lineTo(15,2);c.lineTo(23,6);c.lineTo(23,17);c.closePath();c.fill();
+ c.fillStyle='#0a2a3c';c.beginPath();c.moveTo(-9,1);c.lineTo(-6,-7);c.lineTo(6,-7);c.lineTo(9,1);c.closePath();c.fill();
+ c.fillStyle='#38e8ff';c.fillRect(-1.5,-9,3,10);c.fillRect(-20,7,9,4);c.fillRect(11,7,9,4);c.fillStyle='#04121c';c.fillRect(-7,9,14,6);c.fillStyle='#7fe8ff';c.fillRect(-24,17,48,3);
+ c.save();c.globalCompositeOperation='lighter';c.fillStyle='rgba(56,232,255,'+(.35+.3*fl)+')';for(const x of[-15.5,15.5]){c.beginPath();c.arc(x,9,8,0,7);c.fill()}c.restore();
+ c.restore();
+ for(let r=0;r<2;r++)for(let n=0;n<10;n++){c.fillStyle=(n+r)%2?'#e8fbff':'#04121c';c.fillRect(-30+n*6,34+r*6,6,6)}
+ c.restore()}
+
+/* ---------- avatar / wings / aura hooks ---------- */
+const _da3=drawAv;
+drawAv=function(c,A){const ev=A&&A.ev;
+ if(ev){c.save();c.globalCompositeOperation='lighter';const rgb=A.ek?'143,184,255':'56,232,255',g=c.createRadialGradient(0,0,2,0,0,30);g.addColorStop(0,'rgba('+rgb+',.5)');g.addColorStop(1,'rgba('+rgb+',0)');c.fillStyle=g;c.beginPath();c.arc(0,0,30,0,7);c.fill();c.restore()}
+ _da3(c,A);
+ if(ev){c.save();c.globalCompositeOperation='lighter';for(let n=0;n<2;n++)evArc(c,10,30,'rgb('+(A.ek?'143,184,255':'56,232,255')+')',1,4);c.restore()}};
+const _dw3=drawWings;
+drawWings=function(c,A,t){if(A&&A.ev)evFins(c,A,t||0);return _dw3(c,A,t)};
+const _dau=drawAura;
+drawAura=function(){_dau();const A=AV[S.av];if(!A||!A.ev)return;const c=ctx,p=S.p,t=S.t,y=p.y-jh()*.5,i=A.ek,rgb=i?'143,184,255':'56,232,255';
+ c.save();c.globalCompositeOperation='lighter';
+ const R=130+Math.sin(t*4)*8,g=c.createRadialGradient(p.x,p.y+8,6,p.x,p.y+8,R);g.addColorStop(0,'rgba('+rgb+',.30)');g.addColorStop(.5,'rgba('+rgb+',.10)');g.addColorStop(1,'rgba('+rgb+',0)');c.fillStyle=g;c.beginPath();c.arc(p.x,p.y+8,R,0,7);c.fill();
+ const ph=(t*.9)%1;c.strokeStyle='rgba('+rgb+','+(.5*(1-ph))+')';c.lineWidth=2;c.beginPath();c.ellipse(p.x,p.y+14,18+ph*60,7+ph*22,0,0,7);c.stroke();
+ c.translate(p.x,y);evAuraLocal(c,A,t,1,false);
+ if(S.nbT>0){c.strokeStyle='rgba(255,255,255,.7)';c.lineWidth=2;for(let n=0;n<5;n++){const a=Math.random()*6.28,r=30+Math.random()*30;c.beginPath();c.moveTo(Math.cos(a)*r,Math.sin(a)*r);c.lineTo(Math.cos(a)*(r+16),Math.sin(a)*(r+16));c.stroke()}}
+ c.restore()};
+
+/* ---------- trails ---------- */
+const _tp4=trailPart;
+trailPart=function(c,q,a){const t=q.t;if(t!=='tevl'&&t!=='tevn'&&t!=='evsp0'&&t!=='evsp1')return _tp4(c,q,a);
+ const s=q.s||1,x=q.x,y=q.y,an=q.a||0;c.save();c.globalAlpha=Math.max(0,Math.min(1,a));
+ if(t==='tevl'){c.strokeStyle='#38e8ff';c.lineWidth=3;c.lineJoin='round';c.beginPath();c.moveTo(x-10*s,y);c.lineTo(x-4*s,y-6*s);c.lineTo(x+s,y+4*s);c.lineTo(x+6*s,y-3*s);c.lineTo(x+11*s,y+s);c.stroke();c.strokeStyle='#fff';c.lineWidth=1;c.stroke();
+  c.translate(x+Math.cos(an)*7,y+Math.sin(an)*7);c.rotate(an*2);c.fillStyle='#e8fbff';c.fillRect(-3,-3,6,6);c.fillStyle='#04121c';c.fillRect(-3,-3,3,3);c.fillRect(0,0,3,3)}
+ else if(t==='tevn'){c.globalCompositeOperation='lighter';const h=(11+Math.sin(an*5)*3)*s*Math.max(.3,a);
+  c.fillStyle='rgba(56,232,255,.85)';c.beginPath();c.moveTo(x-4*s,y+2);c.quadraticCurveTo(x-2*s,y-h*.6,x,y-h);c.quadraticCurveTo(x+2*s,y-h*.6,x+4*s,y+2);c.fill();
+  c.fillStyle='#fff';c.beginPath();c.moveTo(x-1.6*s,y+1);c.quadraticCurveTo(x,y-h*.55,x+1.6*s,y+1);c.fill();
+  c.strokeStyle='rgba(127,232,255,.9)';c.lineWidth=1.4;c.beginPath();c.arc(x,y,(2.2-a)*5*s,0,7);c.stroke();
+  c.strokeStyle='#fff';c.lineWidth=1;c.beginPath();c.moveTo(x+5*s,y-4*s);c.lineTo(x+8*s,y-8*s);c.lineTo(x+6*s,y-9*s);c.lineTo(x+10*s,y-14*s);c.stroke()}
+ else{c.globalCompositeOperation='lighter';c.fillStyle=t==='evsp0'?'#7fe8ff':'#bcd0ff';c.beginPath();c.arc(x,y,(2+2*s)*a+.5,0,7);c.fill();c.strokeStyle='#fff';c.lineWidth=1;c.beginPath();c.moveTo(x-5*s,y);c.lineTo(x-1,y-3*s);c.lineTo(x+1,y+3*s);c.lineTo(x+5*s,y);c.stroke()}
+ c.restore()};
+
+/* ---------- power x15 + kill FX + speed boost ---------- */
+const _pwk=PWK;
+PWK=function(){const k=_pwk();if(k)return k;const A=AV[SV.av];return A&&A.evp&&SV.own['pw_'+A.evp]?A.evp:''};
+Object.assign(snd,{evPow(i){this.tone(i?300:120,.7,'sawtooth',.12,i?1200:900);for(let n=0;n<6;n++)this.tn(800+Math.random()*1200,.1,'sawtooth',.04,n*.05);this.zap()}});
+const EVPK={evp0:0,evp1:1};
+const _dp3=doPower;
+doPower=function(){const i=EVPK[S.pw];if(i===undefined)return _dp3();
+ if(!(S.pn>0&&S.running&&!S.paused&&S.cd<=0))return;
+ S.pn--;const p=S.p,fx='ev'+i,A=i?'#8fb8ff':'#38e8ff',rg=i?'143,184,255':'56,232,255';S.sh=Math.max(S.sh,20);snd.evPow(i);
+ S.ring.push({x:p.x,y:p.y,r:10,l:1,c:A,v:700,zk:1,hs:[],pm:3,fx:fx});S.ring.push({x:p.x,y:p.y,r:10,l:1.2,c:'#ffffff',v:460,zk:1,hs:[],pm:3,fx:fx});
+ fxFlash('plasma mini');
+ for(let n=0;n<50;n++){const a=Math.random()*6.28,s=80+Math.random()*340;S.pt.push({x:p.x,y:p.y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:.9,c:n%3?A:'#fff',r:3+Math.random()*4})}
+ if(i===0){S.nbT=5}else{S.shd=Math.max(S.shd,5);p.hp=Math.min(S.maxhp,p.hp+20)}
+ const t=S.z.slice().sort((a,b)=>Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(b.x-p.x,b.y-p.y)).slice(0,i?14:10);
+ for(const z of t){z.hp-=S.dmg*(z.boss?10:i?14:16)*WM();z.hit=.15;if(i)z.sl=1.5;z.kfx=fx;
+  for(let k=1;k<7;k++)S.pt.push({x:p.x+(z.x-p.x)*k/7+(Math.random()-.5)*14,y:p.y+(z.y-p.y)*k/7+(Math.random()-.5)*14,vx:0,vy:0,l:.28,c:k%2?A:'#fff',r:4});
+  S.bm.push({x:z.x,y:z.y,l:.5,c:rg});
+  if(z.hp<=0&&!z.dead){z.dead=1;S.lastfx=fx;killFx(z)}}};
+function evKill(z,t){const i=t==='ev1',A=i?'#8fb8ff':'#38e8ff',rg=i?'143,184,255':'56,232,255';
+ S.ring.push({x:z.x,y:z.y,r:6,l:.55,c:A,v:300});S.ring.push({x:z.x,y:z.y,r:4,l:.4,c:'#fff',v:170});S.bm.push({x:z.x,y:z.y,l:.5,c:rg});
+ for(let n=0;n<10;n++){const a=Math.random()*6.28,s=80+Math.random()*220;S.pt.push({x:z.x,y:z.y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:.45,c:n%3?A:'#fff',r:2+Math.random()*2.5})}
+ snd.k('zap')}
+const _kfx3=killFx;
+killFx=function(z){const lf=S.lastfx||z.kfx;_kfx3(z);if(lf==='ev0'||lf==='ev1'){try{evKill(z,lf)}catch(e){}}};
+const _upd4=update;
+update=function(dt){_upd4(dt);if(!S||!(S.nbT>0)||!S.running||S.paused||S.cd>0||S.cut>0)return;S.nbT-=dt;const p=S.p;
+ let ix=mv.x+((keys.d||keys.arrowright)?1:0)-((keys.a||keys.arrowleft)?1:0),iy=mv.y+((keys.s||keys.arrowdown)?1:0)-((keys.w||keys.arrowup)?1:0);const m=Math.hypot(ix,iy);if(m>1){ix/=m;iy/=m}
+ if(m>.05){p.x=Math.min(W-14,Math.max(14,p.x+ix*110*dt));p.y=Math.min(H-14,Math.max(60,p.y+iy*110*dt));if(Math.random()<.6)S.tp.push({x:p.x,y:p.y+6,l:.5,ml:.5,t:'tevn',a:Math.random()*6.28,s:.8+Math.random()*.5})}};
+
+/* ---------- exclusive badge on the HUD ---------- */
+const _bdg=bdgRender;
+bdgRender=function(){const c=$('bdgc');if(c&&SV.bdg==='evbadge'&&SV.own.evbadge){c.style.display='';const g=c.getContext('2d');g.clearRect(0,0,30,30);g.save();g.translate(15,14);g.scale(.25,.25);evBadge(g,performance.now()/1000,0);g.restore();return}_bdg()};
+setInterval(()=>{if(SV.bdg==='evbadge'&&SV.own.evbadge&&S&&S.running)bdgRender()},120);
+
+/* ---------- draw table: avatars 2% each, trails 3.5% each, score 89% ---------- */
+const NRD=[{id:'phantomapex',t:'av',n:'PHANTOM APEX',p:2,rare:1,dup:10000},{id:'nitroking',t:'av',n:'NITRO KING',p:2,rare:1,dup:10000},{id:'tevl',t:'tr',n:'ELECTRIC RACING TRAIL',p:3.5,rare:1,dup:3000},{id:'tevn',t:'tr',n:'ELECTRIC NITRO TRAIL',p:3.5,rare:1,dup:3000},{s:2000,n:'+2,000 SCORE',p:7},{s:1000,n:'+1,000 SCORE',p:12},{s:500,n:'+500 SCORE',p:25},{s:300,n:'+300 SCORE',p:45}];
+function nrPull(){let r=Math.random()*100,it=NRD[NRD.length-1];for(const d of NRD){if(r<d.p){it=d;break}r-=d.p}if(it.rare&&SV.own[it.id])return{n:'DUPLICATE · '+it.n,t:it.t,id:it.id,s:it.dup,dupe:1};return it}
+function nrGrant(it){SV.own[it.id]=1;if(it.t==='av')SV.own['pw_'+AV[it.id].evp]=1}
+const nrLeft=()=>Math.max(0,SV.nrEnd-Date.now());
+function nrTime(){const l=nrLeft();if(l<=0)return 'ENDED';const d=Math.floor(l/864e5),h=Math.floor(l%864e5/36e5),m=Math.floor(l%36e5/6e4),s=Math.floor(l%6e4/1e3),z=n=>String(n).padStart(2,'0');return (d?d+'D ':'')+z(h)+'H '+z(m)+'M '+z(s)+'S'}
+function nrTop(){$('nrBk').innerHTML=GOLDI+' '+fmt(SV.gold)+' · SCORE: '+fmt(SV.bank);
+ $('nrx1').innerHTML=SV.nfd?'X1 DRAW<small>'+GOLDI+' 1,000</small>':'FREE X1 DRAW<small>1 FREE PER USER</small>';$('nrx10').innerHTML='X10 DRAW<small>'+GOLDI+' 5,000</small>'}
+function nrTick(){const l=nrLeft(),d=Math.floor(l/864e5),h=Math.floor(l%864e5/36e5),m=Math.floor(l%36e5/6e4);
+ $('nrbs').textContent=l<=0?'ENDED':d>0?'ENDS IN '+d+'D '+h+'H':'ENDS IN '+h+'H '+m+'M';$('nrb').classList.toggle('end',l<=0);
+ if($('nrd').style.display==='flex'){$('nrCd').textContent=nrTime();if(!NR.busy)$('nrx1').disabled=$('nrx10').disabled=l<=0;if(l<=0)$('nrMsg').textContent='EVENT ENDED · OWNED ITEMS ARE YOURS TO KEEP'}}
+const NR={busy:0};
+setInterval(nrTick,1000);nrTick();
+
+/* ---------- icons ---------- */
+function nrIcon(cv){const g=cv.getContext('2d'),t=cv.dataset.t,k=cv.dataset.i,u=cv.width/60;g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,cv.width,cv.height);g.setTransform(u,0,0,u,0,0);g.save();g.translate(30,18);
+ if(t==='av')drawAv(g,AV[k]);else if(t==='tr')iconTrail(g,k);else{g.scale(.3,.3);evBadge(g,performance.now()/1000,1)}g.restore()}
+function nrGal(){const o=id=>SV.own[id]?'<i>OWNED</i>':'';
+ const av=id=>{const A=AV[id];return `<div class="nri rare"><canvas width="120" height="72" data-t="av" data-i="${id}"></canvas><b>${A.n}</b>${rb('m')}<i>2%</i><small>POWER X15 INCLUDED<br>${POW[A.evp].n}</small>${o(id)}</div>`};
+ const tr=id=>`<div class="nri rare"><canvas width="120" height="72" data-t="tr" data-i="${id}"></canvas><b>${TR[id].n}</b>${rb('m')}<i>3.5%</i><small>+${TR[id].dmg} DAMAGE</small>${o(id)}</div>`;
+ $('nrGal').innerHTML='<div class="gt">ALL ITEMS</div><div class="nrg">'+av('phantomapex')+av('nitroking')+tr('tevl')+tr('tevn')+`<div class="nri wide xcl"><canvas style="width:96px;flex:none" width="120" height="72" data-t="bdg" data-i="evbadge"></canvas><div><b>EXCLUSIVE EVENT BADGE${rbx()}</b><small>Free on your first draw. Shows on your HUD. Only available during this event.</small>${o('evbadge')}</div></div></div><div class="nrnote"><b>SCORE REWARDS 89%</b> · +300 (45%) · +500 (25%) · +1,000 (12%) · +2,000 (7%)<br>Duplicates turn into SCORE: avatar +10,000 · trail +3,000.<br>Each avatar comes with its own X15 power.</div>`;
+ $('nrGal').querySelectorAll('canvas').forEach(nrIcon)}
+
+/* ---------- animated avatar showcase ---------- */
+let nrRun=0,nrLast=0;
+function nrFrame(now){if(!nrRun)return;requestAnimationFrame(nrFrame);if(now-nrLast<33)return;nrLast=now;const t=now/1000;
+ [['nrA0','phantomapex'],['nrA1','nitroking']].forEach(([cid,id],k)=>{const cv=$(cid),g=cv.getContext('2d'),A=AV[id],u=cv.width/120,rgb=A.ek?'143,184,255':'56,232,255';g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,cv.width,cv.height);g.setTransform(u,0,0,u,0,0);
+  g.save();g.translate(60,68+Math.sin(t*2+k)*2.5);
+  g.save();g.globalCompositeOperation='lighter';g.translate(0,40);g.scale(1,.3);const gg=g.createRadialGradient(0,0,2,0,0,50);gg.addColorStop(0,'rgba('+rgb+',.5)');gg.addColorStop(1,'rgba('+rgb+',0)');g.fillStyle=gg;g.beginPath();g.arc(0,0,50,0,7);g.fill();g.restore();
+  g.save();evAuraLocal(g,A,t,1.3,true);g.restore();
+  g.save();g.rotate(-1.5708);g.scale(1.5,1.5);drawWings(g,A,t);_da3(g,A);g.restore();
+  g.restore();
+  g.fillStyle='#aef6ff';g.font='700 9px system-ui,sans-serif';g.textAlign='center';g.fillText(A.n,60,144)})}
+
+/* ---------- draw flow (same steps as the Exotics Lab draw) ---------- */
+function nrCard(it,i){const rare=it.rare&&!it.dupe;
+ const ic=it.t?`<canvas width="120" height="72" data-t="${it.t}" data-i="${it.id}"></canvas>`:'<div class="ds"><svg viewBox="0 0 24 24" width="30" height="30"><circle cx="12" cy="12" r="10" fill="none" stroke="#7fe8ff" stroke-width="2"/><text x="12" y="16" text-anchor="middle" font-size="11" font-weight="800" fill="#7fe8ff" font-family="system-ui,sans-serif">S</text></svg></div>';
+ const sub=rare?(it.t==='av'?'NEW! + POWER X15 · '+POW[AV[it.id].evp].n:'NEW! MYTHIC TRAIL'):it.dupe?'Already owned · +'+fmt(it.s)+' SCORE':'Score reward';
+ return `<div class="dc${rare?' rare':''}" style="animation-delay:${i*.18}s">${ic}<div><b>${it.n}${rare?rb('m'):''}</b><small>${sub}</small></div></div>`}
+function nrDo(n){if(NR.busy)return;if(nrLeft()<=0){$('nrMsg').textContent='EVENT ENDED';return}
+ const free=n===1&&!SV.nfd,cost=free?0:(n===10?5000:1000);
+ if((SV.gold||0)<cost){$('nrMsg').textContent='NOT ENOUGH TICKET GOLD · EXCHANGE SCORE IN THE LOBBY';return}
+ $('nrMsg').textContent='';if(free)SV.nfd=1;SV.gold=(SV.gold||0)-cost;
+ const res=[];for(let i=0;i<n;i++){const it=nrPull();if(it.rare&&!it.dupe)nrGrant(it);else SV.bank+=it.s;res.push(it)}
+ let badge=0;if(!SV.own.evbadge){SV.own.evbadge=1;SV.bdg='evbadge';badge=1}
+ sv();bdgRender();nrTop();
+ NR.busy=1;$('nrx1').disabled=$('nrx10').disabled=true;const em=$('nrEm');em.classList.remove('shake','pop');void em.getBoundingClientRect();em.classList.add('shake');$('nrRes').innerHTML='';$('nrRare').textContent='';
+ for(let i=0;i<14;i++){const s=document.createElement('i');s.className='nsp';s.style.left=(18+Math.random()*64)+'%';s.style.animationDelay=Math.random()*.7+'s';s.style.background=i%2?'#ffffff':'#7fe8ff';$('nrfw').appendChild(s);setTimeout(()=>s.remove(),1800)}
+ snd.tn(260,.5,'sine',.05,0);snd.tn(330,.5,'sine',.05,.3);snd.tone(110,.9,'sawtooth',.06,500);
+ setTimeout(()=>{em.classList.remove('shake');em.classList.add('pop');const nd=$('nrd');nd.classList.remove('fl');void nd.offsetWidth;nd.classList.add('fl');
+  const rare=res.some(r=>r.rare&&!r.dupe);$('nrRare').textContent=rare?'MYTHIC DROP!':'';
+  const all=res.slice();if(badge)all.push({t:'bdg',id:'evbadge',n:'EXCLUSIVE EVENT BADGE',rare:1,badge:1});
+  $('nrRes').innerHTML=all.map((it,i)=>it.badge?`<div class="dc rare xcl" style="animation-delay:${i*.18}s"><canvas width="120" height="72" data-t="bdg" data-i="evbadge"></canvas><div><b>${it.n}${rbx()}</b><small>NEW! EXCLUSIVE · Equipped on your HUD</small></div></div>`:nrCard(it,i)).join('');
+  $('nrRes').querySelectorAll('canvas').forEach(nrIcon);
+  all.forEach((it,i)=>setTimeout(()=>snd.tn(it.rare&&!it.dupe?1000:500+i*40,.1,'sine',.04,0),i*180));if(rare||badge){snd.angel();snd.zap()}
+  nrGal();
+  setTimeout(()=>{NR.busy=0;const l=nrLeft()<=0;$('nrx1').disabled=$('nrx10').disabled=l;nrTop()},all.length*180+300)},950)}
+$('nrx1').onclick=()=>nrDo(1);$('nrx10').onclick=()=>nrDo(10);
+$('nrb').onclick=()=>{const d=$('nrd');d.style.display='flex';d.scrollTop=0;$('nrMsg').textContent='';$('nrRes').innerHTML='';$('nrRare').textContent='';nrTop();nrGal();nrTick();$('nrx1').disabled=$('nrx10').disabled=nrLeft()<=0;if(!nrRun){nrRun=1;requestAnimationFrame(nrFrame)}};
+$('nrBack').onclick=()=>{$('nrd').style.display='none';nrRun=0;renderHome()};
+bdgRender();
+})();
 
 </script>
-</body>
-  </html>
+</body></html>
